@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Across the Wild — Wildlife Adventure | OV Holidays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0E0C0A;
+      --cream: #FDFBF7;
+      --warm: #F7F3EC;
+      --rule: #E2DBD0;
+      --gold: #B8955A;
+      --mid: #6B6560;
+      --blue-deep: #0E0C0A;
+      --blue-mid: #6B6560;
+      --blue-light: #6B6560;
+      --cream-dark: #F7F3EC;
+      --cream-light: #FDFBF7;
+      --text-dark: #0E0C0A;
+      --text-mid: #6B6560;
+      --text-light: #9A9490;
+      --white: #ffffff;
+      --gold-light: #CFA96E;
+      --gold-dark: #9A7740;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/atw-hero.jpg') center center / cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,15,12,0.50) 0%, rgba(10,15,12,0.30) 45%, rgba(10,15,12,0.75) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 820px;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 80px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 10px;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.6);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .hero-scroll span { display: block; width: 1px; height: 50px; background: rgba(255,255,255,0.4); margin: 0 auto; animation: scrollline 2s ease-in-out infinite; }
+    @keyframes scrollline { 0%,100%{opacity:0.3;transform:scaleY(0.5);transform-origin:top;} 50%{opacity:1;transform:scaleY(1);} }
+
+    /* NAV */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--blue-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .sticky-nav::-webkit-scrollbar { display: none; }
+    .nav-inner { display: flex; align-items: center; gap: 0; white-space: nowrap; }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 18px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-item .nav-date { font-size: 16px; font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1; margin-bottom: 4px; color: rgba(255,255,255,0.7); }
+    .nav-item:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+    .nav-item:hover .nav-date { color: var(--gold-light); }
+
+    /* INTRO */
+    .intro-section { background: var(--white); padding: 80px 24px 70px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .container-wide { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .intro-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 300; line-height: 1.65; color: var(--text-dark); }
+    .intro-divider { display: flex; align-items: center; gap: 16px; margin: 40px 0; }
+    .intro-divider::before, .intro-divider::after { content: ''; flex: 1; height: 1px; background: var(--cream-dark); }
+    .intro-divider span { font-size: 18px; color: var(--gold); }
+
+    /* OVERVIEW TABLE */
+    .overview-section { background: var(--cream-dark); padding: 70px 24px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; color: var(--blue-deep); margin-bottom: 8px; }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-sub { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 40px; }
+    .itinerary-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .itinerary-table th { background: var(--blue-deep); color: rgba(255,255,255,0.85); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; padding: 14px 18px; text-align: left; }
+    .itinerary-table td { padding: 16px 18px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; color: var(--text-mid); }
+    .itinerary-table tr:nth-child(even) td { background: rgba(255,255,255,0.5); }
+    .itinerary-table tr:last-child td { border-bottom: none; }
+    .td-date { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--blue-deep); white-space: nowrap; }
+    .td-location { font-weight: 600; font-size: 12px; letter-spacing: 0.5px; color: var(--blue-mid); }
+    .td-activity { line-height: 1.5; }
+    .td-hotel { font-weight: 500; }
+    .td-meals { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+    .meal-badge { display: inline-block; padding: 3px 8px; border-radius: 2px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .meal-b { background: var(--cream-dark); color: var(--blue-deep); }
+    .meal-l { background: #E8DDD0; color: var(--blue-deep); }
+    .meal-d { background: var(--blue-deep); color: var(--white); }
+    .meal-ai { background: var(--gold); color: var(--white); }
+
+    /* HIGHLIGHTS */
+    .highlights-section { background: var(--blue-deep); padding: 70px 24px; color: var(--white); }
+    .highlights-section .section-title { color: var(--white); }
+    .highlights-section .section-label { color: var(--gold); }
+    .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+    .highlight-item { background: var(--blue-deep); padding: 24px 28px; }
+    .highlight-text { font-size: 13px; font-weight: 400; letter-spacing: 0.3px; line-height: 1.6; color: rgba(255,255,255,0.85); display: block; }
+
+    /* DAY CARDS */
+    .day-card { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .day-card:nth-child(even) { direction: rtl; }
+    .day-card:nth-child(even) > * { direction: ltr; }
+    .day-image { background: var(--blue-mid) center/cover no-repeat; min-height: 420px; }
+    .day-content { background: var(--white); padding: 60px 52px; display: flex; flex-direction: column; justify-content: center; }
+    .day-number { font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 300; line-height: 0.8; color: var(--cream-dark); margin-bottom: 8px; letter-spacing: -4px; }
+    .day-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+    .day-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; color: var(--blue-deep); margin-bottom: 6px; line-height: 1.2; }
+    .day-meals { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+    .day-divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 20px; }
+    .day-body { font-size: 13.5px; line-height: 1.8; color: var(--text-mid); }
+    .day-body p { margin-bottom: 14px; }
+    .day-body p:last-child { margin-bottom: 0; }
+    .day-body strong { color: var(--text-dark); font-weight: 600; }
+    .travel-info { display: flex; flex-direction: column; gap: 6px; background: var(--cream-dark); border-left: 3px solid var(--gold); padding: 14px 18px; margin: 16px 0; font-size: 12px; color: var(--text-mid); }
+    .travel-info span { display: flex; align-items: center; gap: 8px; }
+    .hotel-block { margin-top: 24px; padding: 16px 20px; background: var(--blue-deep); color: var(--white); }
+    .hotel-block .hotel-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .hotel-block .hotel-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; }
+    .hotel-block .hotel-room { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; letter-spacing: 0.5px; }
+    .note-block { background: var(--cream-dark); border: 1px solid rgba(184,151,106,0.25); padding: 14px 18px; margin: 14px 0; font-size: 12.5px; color: var(--text-mid); font-style: italic; line-height: 1.65; }
+
+    /* NOTES */
+    .notes-section { background: var(--white); padding: 70px 24px; }
+    .notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .note-card { padding: 28px; background: var(--cream); border-top: 3px solid var(--blue-deep); }
+    .note-card-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--blue-deep); margin-bottom: 10px; }
+    .note-card-text { font-size: 13px; line-height: 1.7; color: var(--text-mid); }
+
+    /* FOOTER */
+    .footer { background: var(--blue-deep); padding: 50px 24px 40px; text-align: center; color: rgba(255,255,255,0.55); }
+    .footer-text { font-size: 11px; letter-spacing: 2px; line-height: 2; }
+    .footer-gold { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .day-card { grid-template-columns: 1fr; }
+      .day-card:nth-child(even) { direction: ltr; }
+      .day-image { min-height: 280px; order: -1 !important; }
+      .day-content { padding: 36px 24px; }
+      .day-number { font-size: 80px; }
+      .itinerary-table { display: block; overflow-x: auto; }
+      .nav-item { padding: 12px 12px; }
+      .nav-item .nav-date { font-size: 14px; }
+    }
+    @media (max-width: 480px) {
+      .intro-section { padding: 50px 20px; }
+      .overview-section, .highlights-section, .notes-section { padding: 50px 20px; }
+      .day-content { padding: 28px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div style="margin-bottom:20px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="76" height="76" style="display:block;margin:0 auto 8px;">
+        <circle cx="80" cy="80" r="74" fill="none" stroke="#FDFBF7" stroke-width="2"/>
+        <circle cx="80" cy="80" r="68" fill="none" stroke="#FDFBF7" stroke-width="0.5"/>
+        <ellipse cx="80" cy="78" rx="38" ry="40" fill="none" stroke="#FDFBF7" stroke-width="4.5"/>
+        <path d="M 62,44 L 80,112 L 98,44" fill="none" stroke="#FDFBF7" stroke-width="4.5" stroke-linejoin="miter" stroke-linecap="square"/>
+      </svg>
+    </div>
+    <p class="hero-eyebrow">Wildlife Adventure</p>
+    <h1 class="hero-title">Across the Wild</h1>
+    <p class="hero-subtitle">13 Nights &middot; 14 Days &middot; Sri Lanka</p>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <span></span>
+  </div>
+</section>
+
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a href="#day1" class="nav-item"><span class="nav-date">01</span>Kotugoda</a>
+    <a href="#day2" class="nav-item"><span class="nav-date">02&ndash;03</span>Habarana</a>
+    <a href="#day3" class="nav-item"><span class="nav-date">04&ndash;05</span>Gal Oya</a>
+    <a href="#day4" class="nav-item"><span class="nav-date">06&ndash;07</span>Nuwara Eliya</a>
+    <a href="#day5" class="nav-item"><span class="nav-date">08&ndash;10</span>Yala</a>
+    <a href="#day6" class="nav-item"><span class="nav-date">11&ndash;13</span>Tangalle</a>
+    <a href="#day7" class="nav-item"><span class="nav-date">14</span>Departure</a>
+  </div>
+</nav>
+
+<section class="intro-section">
+  <div class="container">
+    <p class="section-label">Welcome to the Wild</p>
+    <p class="intro-text">
+      Sri Lanka&rsquo;s wild heart beats across diverse landscapes &mdash; ancient forests, vast savannas, montane highlands, and untamed coastlines. This 14-day expedition immerses you in the island&rsquo;s greatest wildlife encounters, from witnessing elephant gatherings and leopard sightings to walking with indigenous communities and paddling through serene waterways.
+    </p>
+    <div class="intro-divider"><span>&#10022;</span></div>
+    <p class="intro-text">
+      Whether you&rsquo;re cycling through Sigiriya&rsquo;s forest trails, safari-ing across Yala&rsquo;s legendary leopard kingdom, or unwinding on Tangalle&rsquo;s pristine beaches, each day reveals the raw, untamed beauty that makes Sri Lanka a sanctuary for nature lovers and wildlife adventurers.
+    </p>
+  </div>
+</section>
+
+<section class="overview-section" id="overview">
+  <div class="container-wide">
+    <p class="section-label">At a Glance</p>
+    <h2 class="section-title">Itinerary <em>Outline</em></h2>
+    <p class="section-sub">13 Nights &middot; 14 Days &middot; Wildlife Adventure</p>
+    <table class="itinerary-table">
+      <thead>
+        <tr><th>Day</th><th>Activity</th><th>Location</th><th>Hotel</th><th>Meals</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="td-date">Day 01</span></td>
+          <td class="td-activity">Arrival &mdash; Kotugoda</td>
+          <td><span class="td-location">Kotugoda</span></td>
+          <td class="td-hotel">The Wallawwa</td>
+          <td><span class="td-meals"><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 02</span></td>
+          <td class="td-activity">Kotugoda &mdash; Habarana &middot; Minneriya / Kaudulla NP</td>
+          <td><span class="td-location">Habarana</span></td>
+          <td class="td-hotel">Maia Habarana</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 03</span></td>
+          <td class="td-activity">Sigiriya Forest Bike Safari &middot; Kayak Safari</td>
+          <td><span class="td-location">Habarana</span></td>
+          <td class="td-hotel">Maia Habarana</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 04</span></td>
+          <td class="td-activity">Habarana &mdash; Gal Oya &middot; Boat Safari</td>
+          <td><span class="td-location">Gal Oya</span></td>
+          <td class="td-hotel">Gal Oya Lodge</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-l">L</span><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 05</span></td>
+          <td class="td-activity">Gal Oya NP &middot; Veddah Walk</td>
+          <td><span class="td-location">Gal Oya</span></td>
+          <td class="td-hotel">Gal Oya Lodge</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-l">L</span><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 06</span></td>
+          <td class="td-activity">Gal Oya &mdash; Nuwara Eliya</td>
+          <td><span class="td-location">Nuwara Eliya</span></td>
+          <td class="td-hotel">Goatfell</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 07</span></td>
+          <td class="td-activity">Horton Plains National Park</td>
+          <td><span class="td-location">Nuwara Eliya</span></td>
+          <td class="td-hotel">Goatfell</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-d">D</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 08</span></td>
+          <td class="td-activity">Nuwara Eliya &mdash; Yala NP Safari</td>
+          <td><span class="td-location">Yala</span></td>
+          <td class="td-hotel">Uga Chena Huts</td>
+          <td><span class="td-meals"><span class="meal-badge meal-ai">AI</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 09</span></td>
+          <td class="td-activity">Morning Bush Walk &middot; Yala Block 5 Safari</td>
+          <td><span class="td-location">Yala</span></td>
+          <td class="td-hotel">Uga Chena Huts</td>
+          <td><span class="td-meals"><span class="meal-badge meal-ai">AI</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 10</span></td>
+          <td class="td-activity">Bundala NP &middot; Optional: Sithulpawwa</td>
+          <td><span class="td-location">Yala</span></td>
+          <td class="td-hotel">Uga Chena Huts</td>
+          <td><span class="td-meals"><span class="meal-badge meal-ai">AI</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 11</span></td>
+          <td class="td-activity">Yala &mdash; Tangalle</td>
+          <td><span class="td-location">Tangalle</span></td>
+          <td class="td-hotel">Anantara Peace Haven</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 12</span></td>
+          <td class="td-activity">Optional: Snorkelling &middot; Kayaking Rekawa</td>
+          <td><span class="td-location">Tangalle</span></td>
+          <td class="td-hotel">Anantara Peace Haven</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 13</span></td>
+          <td class="td-activity">Full day at leisure</td>
+          <td><span class="td-location">Tangalle</span></td>
+          <td class="td-hotel">Anantara Peace Haven</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="td-date">Day 14</span></td>
+          <td class="td-activity">Tangalle &mdash; Airport</td>
+          <td><span class="td-location">&mdash;</span></td>
+          <td class="td-hotel">On Board</td>
+          <td><span class="td-meals"><span class="meal-badge meal-b">B</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="highlights-section">
+  <div class="container-wide">
+    <p class="section-label">Signature Experiences</p>
+    <h2 class="section-title">Highlights</h2>
+    <div class="highlights-grid">
+      <div class="highlight-item"><span class="highlight-text">Minneriya / Kaudulla National Park &mdash; witness wild elephant gatherings</span></div>
+      <div class="highlight-item"><span class="highlight-text">Sigiriya Forest Bike Safari &mdash; cycle through ancient forest trails</span></div>
+      <div class="highlight-item"><span class="highlight-text">Kayak Safari on Kala Weva &mdash; paddle through wildlife-rich waterways</span></div>
+      <div class="highlight-item"><span class="highlight-text">Gal Oya Boat Safari &mdash; the only water-based wildlife safari in Sri Lanka</span></div>
+      <div class="highlight-item"><span class="highlight-text">Walk with the Chief Veddha &mdash; discover Sri Lanka&rsquo;s indigenous forest people</span></div>
+      <div class="highlight-item"><span class="highlight-text">Horton Plains &amp; World&rsquo;s End &mdash; trekking at 7,000ft with leopard sightings</span></div>
+      <div class="highlight-item"><span class="highlight-text">Yala National Park &mdash; home to the world&rsquo;s highest density of leopards</span></div>
+      <div class="highlight-item"><span class="highlight-text">Morning Bush Walk along Yala&rsquo;s wild coastline</span></div>
+      <div class="highlight-item"><span class="highlight-text">Bundala National Park &mdash; UNESCO Biosphere Reserve &amp; flamingo haven</span></div>
+      <div class="highlight-item"><span class="highlight-text">Beach days in Tangalle &mdash; Anantara Peace Haven</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 01: KOTUGODA -->
+<section class="day-card" id="day1">
+  <div class="day-image" style="background-image:url('images/atw-wallawwa.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">01</div>
+    <div class="day-label">Day 01 &middot; Arrival</div>
+    <h2 class="day-title">Airport &mdash; Kotugoda</h2>
+    <div class="day-meals"><span class="meal-badge meal-d">D</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p>Ayubowan! Welcome to Sri Lanka. Upon arrival at Bandaranaike International Airport, your OV Holidays representative will greet you and escort you through immigration to the Silk Route Lounge, where you can relax and refresh before your journey begins. Your dedicated chauffeur guide will then transfer you to The Wallawwa &mdash; a charming boutique hotel nestled among tranquil gardens just minutes from the airport.</p>
+      <div class="travel-info"><span><strong>Travel info:</strong> Airport &mdash; Kotugoda | 9 km | Approx. 20 minutes</span></div>
+      <p>Check in and settle in for the evening. Dinner is served at the hotel.</p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">The Wallawwa</div>
+      <div class="hotel-room">Garden Suite &middot; Kotugoda &middot; Dinner</div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 02-03: HABARANA -->
+<section class="day-card" id="day2">
+  <div class="day-image" style="background-image:url('images/atw-habarana.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">02&ndash;03</div>
+    <div class="day-label">Days 02&ndash;03 &middot; Cultural Triangle</div>
+    <h2 class="day-title">Habarana &mdash; Wildlife &amp; Village Life</h2>
+    <div class="day-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-d">D</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p><strong>Day 02:</strong> After breakfast, check out and depart for Habarana.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Kotugoda &mdash; Habarana | 149 km | Approx. 3 hours</span></div>
+      <p>Check in at the hotel. At 14:30, depart for a jeep safari at Minneriya or Kaudulla National Park. Depending on the season, you&rsquo;ll encounter herds of elephants gathering by ancient reservoirs &mdash; a truly unforgettable spectacle. With scrub forest, open grassland, and shimmering water as your backdrop, watch as elephants emerge to feed, socialise, and bathe at the water&rsquo;s edge as the sun dips low. <em>Approx. 3 hours.</em></p>
+      <div class="day-divider" style="margin:24px 0;"></div>
+      <p><strong>Day 03: Sigiriya Forest Bike Safari</strong> &mdash; Start: 07:30, Duration: approx. 3 hours. Cycle through Sigiriya Kaley forest trails, home to rich birdlife, monkeys, and other wildlife. Your guide will uncover local myths, wildlife tracking techniques, and natural history as you ride past ancient lakes and village stops.</p>
+      <p><strong>Optional: Kayak Safari on Kala Weva</strong> &mdash; Start: 16:30, Duration: 2 hours. Glide through the waterways of Kala Weva, spotting herons, kingfishers, and the occasional mugger crocodile. Life jackets and safety gear provided.</p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">Maia Habarana</div>
+      <div class="hotel-room">Superior Room &middot; Habarana &middot; Half Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 04-05: GAL OYA -->
+<section class="day-card" id="day3">
+  <div class="day-image" style="background-image:url('images/atw-galoya.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">04&ndash;05</div>
+    <div class="day-label">Days 04&ndash;05 &middot; Eastern Wilderness</div>
+    <h2 class="day-title">Gal Oya &mdash; Sri Lanka&rsquo;s Secret Wild</h2>
+    <div class="day-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-l">L</span><span class="meal-badge meal-d">D</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p><strong>Day 04:</strong> After breakfast, check out and drive to Gal Oya.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Habarana &mdash; Gal Oya | 183 km | Approx. 3 hours 45 minutes</span></div>
+      <p>Arrive and check in at the extraordinary Gal Oya Lodge &mdash; nine bungalows set across 20 acres of private forest, constructed from locally sourced natural materials, with a restaurant, bar, and pool overlooking a backdrop of low-lying mountains.</p>
+      <p>This afternoon, embark on the <strong>Gal Oya Boat Safari</strong> &mdash; the only water-based wildlife experience in Sri Lanka. Cruise across the vast Senanayake Samudraya reservoir, where elephants swim between islands, crocodiles bask on rocky shores, and rare endemic birds take flight at dusk. <em>Approx. 4 hours.</em></p>
+      <div class="day-divider" style="margin:24px 0;"></div>
+      <p><strong>Day 05: Jungle Drive &amp; Walk Through Gal Oya NP</strong> &mdash; Drive into the remote Nilgala section of Gal Oya National Park &mdash; once the sacred hunting ground of ancient royalty, rich with endemic wildlife and medicinal flora. Search for herds of elephants, four species of deer, and a remarkable variety of endemic birds.</p>
+      <p><strong>Walk with the Chief Veddha</strong> &mdash; Duration: approx. 2 hours. Gal Oya Lodge neighbours one of the last remaining communities of the Veddha, Sri Lanka&rsquo;s indigenous forest people. The village Chief leads you through the jungle, sharing his tribe&rsquo;s use of medicinal plants, ancient hunting grounds, and cave dwellings.</p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">Gal Oya Lodge</div>
+      <div class="hotel-room">Bungalow &middot; Gal Oya &middot; Full Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 06-07: NUWARA ELIYA -->
+<section class="day-card" id="day4">
+  <div class="day-image" style="background-image:url('images/atw-horton.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">06&ndash;07</div>
+    <div class="day-label">Days 06&ndash;07 &middot; Highland Wilderness</div>
+    <h2 class="day-title">Nuwara Eliya &mdash; Mist, Mountains &amp; Leopards</h2>
+    <div class="day-meals"><span class="meal-badge meal-b">B</span><span class="meal-badge meal-d">D</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p><strong>Day 06:</strong> After breakfast, check out and journey to Nuwara Eliya, Sri Lanka&rsquo;s cool, mist-laden highland capital.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Gal Oya &mdash; Nuwara Eliya | 121 km | Approx. 3 hours</span></div>
+      <p>Arrive and settle in at Goatfell &mdash; a characterful highland bungalow surrounded by colonial-era gardens. Evening at leisure.</p>
+      <div class="day-divider" style="margin:24px 0;"></div>
+      <p><strong>Day 07:</strong> Depart early with a packed breakfast for Horton Plains National Park &mdash; a UNESCO World Heritage Site at over 7,000 feet above sea level.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Nuwara Eliya &mdash; Horton Plains | 30 km | Approx. 1.5 hours | Excursion: approx. 4 hours</span></div>
+      <p>Trek across frost-kissed grasslands past Baker&rsquo;s Falls and to the edge of World&rsquo;s End &mdash; a breathtaking 3,700-foot sheer drop. The plains shelter sambar deer, fishing cats, otters, wild boar, and if fortune favours you, the elusive Sri Lankan Leopard padding silently through the mist.</p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">Goatfell</div>
+      <div class="hotel-room">Concordia Bedroom &middot; Nuwara Eliya &middot; Half Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 08-10: YALA -->
+<section class="day-card" id="day5">
+  <div class="day-image" style="background-image:url('images/atw-yala.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">08&ndash;10</div>
+    <div class="day-label">Days 08&ndash;10 &middot; Wild South</div>
+    <h2 class="day-title">Yala &mdash; The Leopard Kingdom</h2>
+    <div class="day-meals"><span class="meal-badge meal-ai">AI</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p><strong>Day 08:</strong> After breakfast, check out and journey south to Yala.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Nuwara Eliya &mdash; Yala | 125 km | Approx. 4 hours 20 minutes</span></div>
+      <p>Check in at Uga Chena Huts. At 14:30, depart for an afternoon jeep safari through Yala National Park &mdash; 1,259 sq km of grassland, scrub forest, and coastline sheltering the world&rsquo;s highest density of wild leopards, alongside elephants, sloth bears, and a spectacular variety of birdlife. <em>Approx. 4 hours.</em></p>
+      <div class="day-divider" style="margin:24px 0;"></div>
+      <p><strong>Day 09: Morning Bush Walk</strong> &mdash; Start: 06:00, Duration: 1.5 hours. Walk Yala&rsquo;s wild coastline at dawn with expert rangers &mdash; through dramatic dunes, rocky outcrops, and untouched beach where sea turtles come to nest.</p>
+      <p><strong>Afternoon Yala Block 5 Safari</strong> &mdash; Explore the exclusive, rarely-visited Block 5 &mdash; 6,600 hectares of unspoiled wilderness and serene reservoir. An intimate encounter with Sri Lanka&rsquo;s wildest heart.</p>
+      <div class="day-divider" style="margin:24px 0;"></div>
+      <p><strong>Day 10:</strong> Early wake-up at 04:45 for a dawn jeep safari in <strong>Bundala National Park</strong> &mdash; Sri Lanka&rsquo;s first Ramsar wetland and a UNESCO Biosphere Reserve. A vibrant mosaic of lagoons, salt pans, and scrub forest, home to nearly 200 bird species including the iconic greater flamingo. <em>Approx. 4 hours.</em></p>
+      <p><strong>Optional: Sithulpawwa Raja Maha Viharaya</strong> &mdash; Visit this ancient 2nd century BC Buddhist monastery tucked into rocky outcrops within Yala National Park. A serene excursion with sweeping jungle views. <em>Approx. 2 hours.</em></p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">Uga Chena Huts</div>
+      <div class="hotel-room">Cabin with Pool &middot; Yala &middot; All Inclusive</div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 11-13: TANGALLE -->
+<section class="day-card" id="day6">
+  <div class="day-image" style="background-image:url('images/atw-tangalle.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">11&ndash;13</div>
+    <div class="day-label">Days 11&ndash;13 &middot; Coastal Retreat</div>
+    <h2 class="day-title">Tangalle &mdash; Sea, Stillness &amp; Southern Shore</h2>
+    <div class="day-meals"><span class="meal-badge meal-b">B</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p><strong>Day 11:</strong> After a leisurely breakfast, check out and drive to Tangalle for a relaxed beach stay.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Yala &mdash; Tangalle | 146 km | Approx. 50 minutes</span></div>
+      <p>Check in at Anantara Peace Haven. The afternoon is entirely at leisure.</p>
+      <div class="day-divider" style="margin:24px 0;"></div>
+      <p><strong>Days 12&ndash;13:</strong> Two full days of complete freedom. The beach, the pool, and the rhythm of the southern ocean are yours.</p>
+      <p><strong>Optional: Snorkelling in Tangalle</strong> &mdash; Discover vibrant coral gardens and colourful reef fish in the calm, crystal-clear waters along the southern coast. Gentle enough for all experience levels.</p>
+      <p><strong>Optional: Kayaking in Rekawa Lagoon</strong> &mdash; Glide through mangrove-fringed waterways where herons, kingfishers, and water monitors keep quiet company. Best at dawn or late afternoon as the light softens.</p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">Anantara Peace Haven</div>
+      <div class="hotel-room">Premier Ocean View Room &middot; Tangalle &middot; Bed &amp; Breakfast</div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 14: DEPARTURE -->
+<section class="day-card" id="day7">
+  <div class="day-image" style="background-image:url('images/atw-departure.jpg'); background-position:center center;"></div>
+  <div class="day-content">
+    <div class="day-number">14</div>
+    <div class="day-label">Day 14 &middot; Farewell</div>
+    <h2 class="day-title">Tangalle &mdash; Airport</h2>
+    <div class="day-meals"><span class="meal-badge meal-b">B</span></div>
+    <div class="day-divider"></div>
+    <div class="day-body">
+      <p>After a final breakfast, your chauffeur guide will transfer you to Bandaranaike International Airport in time for your departure flight. A packed snack will be provided for the journey.</p>
+      <div class="travel-info"><span><strong>Travel:</strong> Tangalle &mdash; Airport | 208 km | Approx. 3 hours</span></div>
+      <div class="note-block">Please be at the airport at least 3 hours prior to your departure flight.</div>
+      <p>Thank you for journeying with OV Holidays. We hope Sri Lanka has left its mark on you.</p>
+    </div>
+    <div class="hotel-block">
+      <div class="hotel-label">Hotel</div>
+      <div class="hotel-name">On Board</div>
+      <div class="hotel-room">Airport Transfer &middot; Colombo</div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container-wide">
+    <p class="section-label">Before You Go</p>
+    <h2 class="section-title">Important <em>Notes</em></h2>
+    <div class="notes-grid">
+      <div class="note-card">
+        <div class="note-card-title">Poya Days</div>
+        <div class="note-card-text">Alcohol service is restricted on religious holidays (Poya Days). Alcohol is not available for purchase at bars or restaurants on these dates. Please contact the reception for guidance during these periods.</div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-title">Check-In &amp; Check-Out</div>
+        <div class="note-card-text">Standard hotel check-in is 14:00. Standard check-out is 12:00. Early check-in and late check-out are subject to availability and may incur additional fees.</div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-title">Belongings</div>
+        <div class="note-card-text">While we take every precaution, hotel management is not responsible for lost, stolen, or damaged personal belongings. We recommend using hotel safes and exercising care with valuables.</div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-title">Travel Times</div>
+        <div class="note-card-text">All travel times are approximate and subject to traffic conditions, road works, and weather. Please allow flexibility in your schedule.</div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-title">Gratuities</div>
+        <div class="note-card-text">Gratuities for guides and drivers are at your discretion. We recommend presenting tips in an envelope at the end of your journey as a token of appreciation.</div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-title">Dress Code</div>
+        <div class="note-card-text">Light, breathable clothing is recommended for Sri Lanka&rsquo;s tropical climate. Comfortable walking shoes are essential. At religious sites, dress modestly &mdash; covering from knees to elbows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="overview-section" style="background:var(--white); padding:70px 24px;">
+  <div class="container-wide">
+    <p class="section-label">Your Stays</p>
+    <h2 class="section-title">Hotels <em>&amp; Accommodations</em></h2>
+    <table class="itinerary-table" style="margin-top:40px;">
+      <thead>
+        <tr><th>City</th><th>Hotel</th><th>Room</th><th>Meal Plan</th><th>Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="td-location">Kotugoda</span></td>
+          <td class="td-hotel">The Wallawwa</td>
+          <td>Garden Suite</td>
+          <td>Bed &amp; Breakfast</td>
+          <td><strong>1 Night</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-location">Habarana</span></td>
+          <td class="td-hotel">Maia Habarana</td>
+          <td>Superior Room</td>
+          <td>Half Board</td>
+          <td><strong>2 Nights</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-location">Gal Oya</span></td>
+          <td class="td-hotel">Gal Oya Lodge</td>
+          <td>Bungalow</td>
+          <td>Full Board</td>
+          <td><strong>2 Nights</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-location">Nuwara Eliya</span></td>
+          <td class="td-hotel">Goatfell</td>
+          <td>Concordia Bedroom</td>
+          <td>Half Board</td>
+          <td><strong>2 Nights</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-location">Yala</span></td>
+          <td class="td-hotel">Uga Chena Huts</td>
+          <td>Cabin with Pool</td>
+          <td>All Inclusive</td>
+          <td><strong>3 Nights</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-location">Tangalle</span></td>
+          <td class="td-hotel">Anantara Peace Haven</td>
+          <td>Premier Ocean View Room</td>
+          <td>Bed &amp; Breakfast</td>
+          <td><strong>3 Nights</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="footer">
+  <div style="margin-bottom:20px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="52" height="52" style="display:block;margin:0 auto 8px;">
+      <circle cx="80" cy="80" r="74" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="80" cy="80" r="68" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+      <ellipse cx="80" cy="78" rx="38" ry="40" fill="none" stroke="#ffffff" stroke-width="4.5"/>
+      <path d="M 62,44 L 80,112 L 98,44" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="miter" stroke-linecap="square"/>
+    </svg>
+  </div>
+  <p class="footer-text">
+    <span class="footer-gold">Across the Wild &middot; Wildlife Adventure</span><br>
+    13 Nights &middot; 14 Days &middot; Sri Lanka<br><br>
+    Prepared by OV Holidays
+  </p>
+</footer>
+
+</body>
+</html>
